@@ -112,6 +112,9 @@ int main()
 					sAnalyticRunnerPath.append(pConfig->get(analytic::util::PROPERTY_ANALYTIC_RUNNER_DIR));
 					sAnalyticRunnerPath.append("/");
 					sAnalyticRunnerPath.append(pConfig->get(analytic::util::PROPERTY_ANALYTIC_RUNNER_FILENAME));
+                    
+                    std::cout << "From Starter: Instance id " + boost::lexical_cast<std::string>(iAnalyticInstanceId) + " plugin location" + sAnalyticDirPath + " plugin file anem" + sAnalyticFilename + " Input Queue port" + sAnalyticInputQueueAddress + " Output queue port" + sAnalyticOutputQueueAddress << std::endl;
+    
 					bAIStarted = pAnalyticProcess->startAnalytic(sAnalyticRunnerPath, iAnalyticInstanceId, sAnalyticDirPath, sAnalyticFilename, sAnalyticInputQueueAddress, sAnalyticOutputQueueAddress);
 				}
 				catch(opencctv::Exception &e)
@@ -140,7 +143,7 @@ int main()
 				else
 				{
 					std::stringstream ssErrMsg;
-					ssErrMsg << "Failed to start Analytic Instance " << iAnalyticInstanceId << ". ";
+					ssErrMsg << "Failed to start Analytic Instance from bAIStarted " << iAnalyticInstanceId << ". ";
 					util::log::Loggers::getDefaultLogger()->error(ssErrMsg.str());
 				}
 				// Sending Analytic Start reply
